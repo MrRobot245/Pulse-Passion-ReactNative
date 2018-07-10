@@ -27,7 +27,6 @@ export default class HomeScreen extends React.Component {
 
 onPressSearch(){
 	console.log(this.state.searchTerm);
-
 }
 
   render() {
@@ -48,7 +47,7 @@ onPressSearch(){
 
           </View>
 		  <TextInput
-          style={{height: 40,backgroundColor:'white',marginHorizontal:30,padding:5,borderColor: '#fff',borderWidth: 1}}
+          style={{height: 40,backgroundColor:'white',marginHorizontal:30,padding:5,borderColor: '#fff',borderWidth: 1,borderRadius:10}}
           placeholder="Enter your search term:"
 		  autoCapitalize = "none"
 		  autoCorrect= {false}
@@ -63,7 +62,7 @@ onPressSearch(){
 	  onPress={this.onPressSearch.bind(this)}
 	  title="Search"
 	  color="#fff"
-	  style={{marginTop:20}}
+
 	  accessibilityLabel="Learn more about this purple button"
 	/>
 
