@@ -7,30 +7,66 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput,
+  Button
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+import { MontText,MontBold } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  constructor(props) {
+      super(props);
+      this.state = {
+		  searchTerm: ""
+	  };
+    }
+
+onPressSearch(){
+	console.log(this.state.searchTerm);
+
+}
 
   render() {
+
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
-		  <Text>Pulse Passion</Text>
+		  <MontText style={styles.getStartedText}>
+		  MyPulse
+		  </MontText>
             <Image
               source={
-                require('../assets/images/robot-dev.png')
+                require('../assets/images/logoNoText.png')
               }
               style={styles.welcomeImage}
             />
 
           </View>
+		  <TextInput
+          style={{height: 40,backgroundColor:'white',marginHorizontal:30,padding:5,borderColor: '#fff',borderWidth: 1}}
+          placeholder="Enter your search term:"
+		  autoCapitalize = "none"
+		  autoCorrect= {false}
+		  clearButtonMode={'always'}
+		  onSubmitEditing={this.onPressSearch.bind(this)}
+		  onChangeText={(text) => this.setState({searchTerm: text})}
+        />
+
+
+
+		<Button
+	  onPress={this.onPressSearch.bind(this)}
+	  title="Search"
+	  color="#fff"
+	  style={{marginTop:20}}
+	  accessibilityLabel="Learn more about this purple button"
+	/>
+
 
         </ScrollView>
       </View>
@@ -51,14 +87,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+    backgroundColor: '#649b39',
   },
   contentContainer: {
     paddingTop: 30,
@@ -69,11 +98,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 200,
+    height: 120,
     resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+    marginTop: 10,
   },
   getStartedContainer: {
     alignItems: 'center',
@@ -82,57 +110,18 @@ const styles = StyleSheet.create({
   homeScreenFilename: {
     marginVertical: 7,
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
   getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
+    fontSize: 24,
+    color: 'white',
     textAlign: 'center',
   },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  submitButton: {
+   backgroundColor: '#000',
+   padding: 10,
+   margin: 15,
+   height: 40,
+},
+submitButtonText:{
+   color: 'white'
+}
 });

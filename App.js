@@ -20,7 +20,7 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
           <AppNavigator />
         </View>
       );
@@ -30,8 +30,7 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require('./assets/images/logoNoText.png'),
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
@@ -39,6 +38,8 @@ export default class App extends React.Component {
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+		'mont': require('./assets/fonts/Montserrat-Regular.ttf'),
+		'montBold': require('./assets/fonts/Montserrat-Bold.ttf'),
       }),
     ]);
   };
