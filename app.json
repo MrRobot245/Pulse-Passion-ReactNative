@@ -8,16 +8,16 @@
         "platforms": ["ios", "android"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.nathandev.pulsepassion",
+            "bundleIdentifier": "com.pulsePassion.MyPulseiOS",
             "config": {
                 "usesNonExemptEncryption": false
             },
         },
         "android": {
             "package": "com.nathandev.pulsepassion",
-            "versionCode": 1000,
+            "versionCode": 1041,
         },
-        "version": "1.0.0",
+        "version": "1.4.1",
         "orientation": "portrait",
         "icon": "./assets/icons/icon.png",
         "splash": {
