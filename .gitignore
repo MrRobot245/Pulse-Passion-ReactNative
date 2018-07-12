@@ -62,3 +62,6 @@ typings/
 node_modules/**/*
 .expo/**/*
 deploy
+app.apk
+app.ipa
+googleplay.json

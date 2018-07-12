@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet,ActivityIndicator,View,Text,Button, RefreshControl,Linking,TouchableOpacity,Platform,AlertIOS,Alert,FlatList } from 'react-native';
+import { ScrollView, StyleSheet,ActivityIndicator,View,Text,Button, RefreshControl,Linking,TouchableOpacity,Platform,AlertIOS,Alert,FlatList,Image } from 'react-native';
 import Colors from '../constants/Colors';
 export default class DetailScreen extends React.Component {
 
@@ -18,48 +18,143 @@ export default class DetailScreen extends React.Component {
 	}
 	componentDidMount(){
 	}
+
 	render() {
 		const { navigation } = this.props;
 		const item = navigation.getParam('data', 'NO-data');
-		console.log(item);
-		return (
-	      <ScrollView style={styles.container}>
-		  <Text>
-		  {item.title}
-		  {"\n"}
-		  {item.cat}
-		  {"\n"}
-		  {"\n"}
-		  </Text>
-		  <Text>
-		  Ingredients:
-		  {"\n"}
-		  {item.iList}
-		  {"\n"}
-		  </Text>
-		  <Text>
-		  Good List:
-		  {"\n"}
-		  {item.gList}
-		  {"\n"}
-		  </Text>
-		  <Text>
-		  Bad List:
-		  {"\n"}
-		  {item.bList}
-		  {"\n"}
-		  {"\n"}
-		  </Text>
 
-		  <Text>
-		  Rating:
-		  {"\n"}
-		  fRate: {item.fRate}{"\n"}
-		  iRate: {item.iRate}{"\n"}
-		  </Text>
-	      </ScrollView>
-	    );
+		var gListArr=[];
+		var bListArr=[];
+		var imgRating=[];
+		var gList = item.gList.split(", ");
+		var bList = item.bList.split(", ");
+		var ratingPng="";
+
+		if(gList.length>1)
+		{
+			for (var i = 0, len = gList.length; i < len; i++) {
+				gListArr.push(
+					<Text key={"gList"+i}>
+					{"\u2022" +" "+ gList[i]}{"\n"}
+					</Text>
+				)
+			}
 		}
+		else{
+			gListArr.push(
+				<Text key={"bListNone"}>
+				Information not available
+				</Text>
+			)
+		}
+		if(bList.length>1)
+		{
+			for (var i = 0, len = bList.length; i < len; i++) {
+				bListArr.push(
+					<Text key={"bList"+i}>
+					{"\u2022" +" "+ bList[i]}{"\n"}
+					</Text>
+				)
+			}
+		}
+		else{
+			bListArr.push(
+				<Text key={"bListNone"}>
+				Information not available
+				</Text>
+			)
+		}
+		if(item.fRate=="Often")
+		{
+			imgRating.push(
+				<Image
+				key={"rating"}
+				source={
+					require('../assets/images/nnGreen.png')
+				}
+				style={styles.ratingImg}
+				/>
+			)
+		}
+		else if(item.fRate=="Limit")
+		{
+			imgRating.push(
+				<Image
+				key={"rating"}
+				source={
+					require('../assets/images/nnYellow.png')
+				}
+				style={styles.ratingImg}
+				/>
+			)
+		}
+		else{
+			imgRating.push(
+				<Image
+				key={"rating"}
+				source={
+					require('../assets/images/nnRed.png')
+				}
+				style={styles.ratingImg}
+				/>
+			)
+		}
+
+
+
+
+
+
+		// console.log(item);
+		return (
+			<ScrollView style={styles.container}>
+			<Text style={styles.title}>
+			{item.title}
+			</Text>
+			<Text style={styles.subtitle}>
+			{item.cat}
+			</Text>
+			<View style={styles.imgCenter}>
+			{imgRating}
+			</View>
+
+			<Text style={styles.rating}>
+			Rating: {item.iRate}{"\n"}
+			</Text>
+
+
+			<Text style={styles.gbHeading}>
+			Good List:
+			{"\n"}
+			<Text style={styles.goodList}>
+			{"\n"}
+			{gListArr}
+			</Text>
+			{"\n"}
+			</Text>
+			{"\n"}
+			<Text style={styles.gbHeading}>
+			Bad List:
+			{"\n"}
+			<Text style={styles.badList}>
+			{"\n"}
+			{bListArr}
+			</Text>
+			{"\n"}
+			</Text>
+			<Text style={styles.gbHeading}>
+			Ingredients:
+			{"\n"}
+			{"\n"}
+
+			<Text style={styles.iList}>
+			{item.iList}
+			</Text>
+			{"\n"}
+			</Text>
+			</ScrollView>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
@@ -69,36 +164,39 @@ const styles = StyleSheet.create({
 		paddingLeft:10,
 		paddingRight:10,
 	},
-	flatview: {
-	    justifyContent: 'center',
-	    paddingTop: 15,
-		paddingBottom:15,
-		paddingLeft:10,
-		paddingRight:10,
-	    borderRadius: 2,
-	  },
-	name:{
-
+	title:{
+		textAlign: 'center',
+		fontSize:20,
+		paddingTop:10,
 	},
-	email:{
-
+	subtitle:{
+		textAlign:'center',
+		fontSize:16,
 	},
-	loadingContainer:{
-		flex: 1,
-		alignItems: 'center',
-		justifyContent:'center',
+	rating:{
+		textAlign:'center',
 	},
-	plexPaddingLeft:{
-		paddingLeft:10,
+	gbHeading:{
+		fontSize:18,
 	},
-	contentContainer: {
-		paddingHorizontal: 20,
+	goodList:{
+		color:'green',
+		fontSize:15,
 	},
-	canvas: {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		bottom: 0,
-		right: 0,
+	badList:{
+		color:'red',
+		fontSize:15,
+	},
+	iList:{
+		fontSize:15,
+	},
+	ratingImg:{
+		width:300,
+		height:150,
+		paddingTop:15,
+		resizeMode: 'contain',
+	},
+	imgCenter:{
+	alignItems: 'center',
 	},
 });

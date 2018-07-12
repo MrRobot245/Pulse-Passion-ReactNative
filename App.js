@@ -31,6 +31,9 @@ export default class App extends React.Component {
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/logoNoText.png'),
+		require('./assets/images/nnGreen.png'),
+		require('./assets/images/nnYellow.png'),
+		require('./assets/images/nnRed.png'),
       ]),
 	  FileSystem.downloadAsync(
 		  Asset.fromModule(require('./assets/db/DB2.db')).uri,

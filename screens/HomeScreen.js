@@ -124,14 +124,14 @@ const styles = StyleSheet.create({
 	},
 	welcomeContainer: {
 		alignItems: 'center',
-		marginTop: 10,
+		marginTop: 15,
 		marginBottom: 20,
 	},
 	welcomeImage: {
-		width: 200,
-		height: 120,
+		width: 260,
+		height: 160,
 		resizeMode: 'contain',
-		marginTop: 10,
+		marginTop: 15,
 	},
 	getStartedContainer: {
 		alignItems: 'center',
