@@ -33,10 +33,9 @@ export default class ListScreen extends React.Component {
 				<TouchableOpacity style={styles.flatview} activeOpacity = { .5 }
 					onPress={() => {this.props.navigation.navigate('Detail',{data:item});}}>
 					 <Text style={styles.name}>{item.title}</Text>
-					 <Text style={styles.name}>{item.id}</Text>
 	            </TouchableOpacity>
 	            }
-	            keyExtractor={item => item.title+Math.floor(Math.random() * 10000) + 1 }
+	            keyExtractor={(item,index) => index.toString() }
 	          />
 	      </ScrollView>
 	    );
@@ -50,11 +49,12 @@ const styles = StyleSheet.create({
 	},
 	flatview: {
 	    justifyContent: 'center',
+		borderBottomColor:'black',
+		borderBottomWidth: 1,
 	    paddingTop: 15,
 		paddingBottom:15,
 		paddingLeft:10,
 		paddingRight:10,
-	    borderRadius: 2,
 	  },
 	name:{
 

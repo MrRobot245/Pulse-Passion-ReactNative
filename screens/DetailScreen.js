@@ -24,7 +24,39 @@ export default class DetailScreen extends React.Component {
 		console.log(item);
 		return (
 	      <ScrollView style={styles.container}>
+		  <Text>
+		  {item.title}
+		  {"\n"}
+		  {item.cat}
+		  {"\n"}
+		  {"\n"}
+		  </Text>
+		  <Text>
+		  Ingredients:
+		  {"\n"}
+		  {item.iList}
+		  {"\n"}
+		  </Text>
+		  <Text>
+		  Good List:
+		  {"\n"}
+		  {item.gList}
+		  {"\n"}
+		  </Text>
+		  <Text>
+		  Bad List:
+		  {"\n"}
+		  {item.bList}
+		  {"\n"}
+		  {"\n"}
+		  </Text>
 
+		  <Text>
+		  Rating:
+		  {"\n"}
+		  fRate: {item.fRate}{"\n"}
+		  iRate: {item.iRate}{"\n"}
+		  </Text>
 	      </ScrollView>
 	    );
 		}
@@ -34,6 +66,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
+		paddingLeft:10,
+		paddingRight:10,
 	},
 	flatview: {
 	    justifyContent: 'center',

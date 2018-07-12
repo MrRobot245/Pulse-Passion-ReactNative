@@ -18,7 +18,7 @@ export default class HomeScreen extends React.Component {
 	searchDB() {
 		const db = SQLite.openDatabase('DB2.db');
 		db.transaction(tx => {
-			tx.executeSql('SELECT * FROM DB WHERE title LIKE ?', ['%'+this.state.searchTerm+'%'], (_, {
+			tx.executeSql('SELECT * FROM DB WHERE title LIKE ? ORDER BY title', ['%'+this.state.searchTerm+'%'], (_, {
 				rows
 			}) => {
 				this.props.navigation.navigate('List',{data:rows._array,searchTerm:this.state.searchTerm});
@@ -49,7 +49,7 @@ onPressSearch(){
 }
 onPressLearn()
 {
-	
+
 }
 
 render() {
