@@ -21,7 +21,8 @@ export default class HomeScreen extends React.Component {
 			tx.executeSql('SELECT * FROM DB WHERE title LIKE ?', ['%'+this.state.searchTerm+'%'], (_, {
 				rows
 			}) => {
-				console.log(rows._array[0]);
+				this.props.navigation.navigate('List',{data:rows._array,searchTerm:this.state.searchTerm});
+				// console.log(rows._array[0]);
 
 			});
 		},

@@ -6,9 +6,11 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ListScreen from '../screens/ListScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  List: ListScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -23,10 +25,19 @@ HomeStack.navigationOptions = {
       }
     />
   ),
+  tabBarOptions: {
+	  style: {
+		  backgroundColor: '#649b39',
+	  },
+	  labelStyle:{
+		  color:'#fff',
+	  }
+  },
 };
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
+
 });
 
 LinksStack.navigationOptions = {
@@ -37,6 +48,14 @@ LinksStack.navigationOptions = {
       name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-information-circle'}
     />
   ),
+  tabBarOptions: {
+	style: {
+		backgroundColor: '#649b39',
+	},
+	labelStyle:{
+		color:'#fff',
+	}
+  },
 };
 
 {/*const SettingsStack = createStackNavigator({
