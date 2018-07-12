@@ -8,7 +8,8 @@ import {
 	TouchableOpacity,
 	View,
 	TextInput,
-	Button
+	Button,
+	Linking
 } from 'react-native';
 import {SQLite,FileSystem,Asset } from 'expo';
 import { MontText,MontBold } from '../components/StyledText';
@@ -44,12 +45,11 @@ componentDidMount() {
 
 }
 onPressSearch(){
-	console.log(this.state.searchTerm);
 	this.searchDB();
 }
 onPressLearn()
 {
-
+Linking.openURL("https://pulsepassion.ca");
 }
 
 render() {
@@ -86,19 +86,18 @@ render() {
 		onPress={this.onPressSearch.bind(this)}
 		title="Search"
 		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
-
-		accessibilityLabel="Learn more about this purple button"
+		accessibilityLabel="Search the database"
 		/>
 
-
 		</ScrollView>
+		<View style={{margin:10}}>
 		<Button
 		onPress={this.onPressLearn.bind(this)}
 		title="Learn More"
 		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
-
-		accessibilityLabel="Learn more about this purple button"
+		accessibilityLabel="Learn more about Pulse Passion!"
 		/>
+		</View>
 		</View>
 	);
 }
