@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {SQLite,FileSystem,Asset } from 'expo';
 import { MontText,MontBold } from '../components/StyledText';
-
+import Colors from '../constants/Colors';
 export default class HomeScreen extends React.Component {
 
 	searchDB() {
@@ -77,6 +77,7 @@ render() {
 		clearButtonMode={'always'}
 		onSubmitEditing={this.onPressSearch.bind(this)}
 		onChangeText={(text) => this.setState({searchTerm: text})}
+		underlineColorAndroid={'rgba(0,0,0,0)'}
 		/>
 
 
@@ -84,7 +85,7 @@ render() {
 		<Button
 		onPress={this.onPressSearch.bind(this)}
 		title="Search"
-		color="#fff"
+		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
 
 		accessibilityLabel="Learn more about this purple button"
 		/>
@@ -94,7 +95,7 @@ render() {
 		<Button
 		onPress={this.onPressLearn.bind(this)}
 		title="Learn More"
-		color="#fff"
+		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
 
 		accessibilityLabel="Learn more about this purple button"
 		/>

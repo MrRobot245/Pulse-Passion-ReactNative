@@ -32,9 +32,9 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('./assets/images/logoNoText.png'),
       ]),
-	  Expo.FileSystem.downloadAsync(
-		  Expo.Asset.fromModule(require('./assets/db/DB2.db')).uri,
-		  `${Expo.FileSystem.documentDirectory}SQLite/DB2.db`
+	  FileSystem.downloadAsync(
+		  Asset.fromModule(require('./assets/db/DB2.db')).uri,
+		  `${FileSystem.documentDirectory}SQLite/DB2.db`
 	  ),
       Font.loadAsync({
         ...Icon.Ionicons.font,
