@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
+import { AppLoading, Asset, Font, Icon,FileSystem} from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
 export default class App extends React.Component {
@@ -32,11 +32,12 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('./assets/images/logoNoText.png'),
       ]),
+	  Expo.FileSystem.downloadAsync(
+		  Expo.Asset.fromModule(require('./assets/db/DB2.db')).uri,
+		  `${Expo.FileSystem.documentDirectory}SQLite/DB2.db`
+	  ),
       Font.loadAsync({
-        // This is the font that we are using for our tab bar
         ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
 		'mont': require('./assets/fonts/Montserrat-Regular.ttf'),
 		'montBold': require('./assets/fonts/Montserrat-Bold.ttf'),
@@ -45,8 +46,6 @@ export default class App extends React.Component {
   };
 
   _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 
