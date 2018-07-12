@@ -1,16 +1,18 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
+import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ListScreen from '../screens/ListScreen';
+import DetailScreen from '../screens/DetailScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   List: ListScreen,
+  Detail: DetailScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -27,10 +29,10 @@ HomeStack.navigationOptions = {
   ),
   tabBarOptions: {
 	  style: {
-		  backgroundColor: '#649b39',
+		  backgroundColor: Colors.darkerGreen,
 	  },
 	  labelStyle:{
-		  color:'#fff',
+		  color:Colors.label,
 	  }
   },
 };
@@ -50,10 +52,10 @@ LinksStack.navigationOptions = {
   ),
   tabBarOptions: {
 	style: {
-		backgroundColor: '#649b39',
+		backgroundColor: Colors.darkerGreen,
 	},
 	labelStyle:{
-		color:'#fff',
+		color:Colors.label,
 	}
   },
 };

@@ -47,6 +47,10 @@ onPressSearch(){
 	console.log(this.state.searchTerm);
 	this.searchDB();
 }
+onPressLearn()
+{
+	
+}
 
 render() {
 
@@ -87,6 +91,13 @@ render() {
 
 
 		</ScrollView>
+		<Button
+		onPress={this.onPressLearn.bind(this)}
+		title="Learn More"
+		color="#fff"
+
+		accessibilityLabel="Learn more about this purple button"
+		/>
 		</View>
 	);
 }

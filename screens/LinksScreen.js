@@ -1,13 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-
+import Colors from '../constants/Colors';
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
     title: 'Links',
-	headerTintColor:'#fff',
+	headerTintColor:Colors.headerTint,
 	headerStyle:{
-		backgroundColor:"#649b39",
+		backgroundColor:Colors.darkerGreen,
 	},
   };
 

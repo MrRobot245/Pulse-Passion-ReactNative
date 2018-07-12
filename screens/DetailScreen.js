@@ -1,10 +1,10 @@
 import React from 'react';
 import { ScrollView, StyleSheet,ActivityIndicator,View,Text,Button, RefreshControl,Linking,TouchableOpacity,Platform,AlertIOS,Alert,FlatList } from 'react-native';
 import Colors from '../constants/Colors';
-export default class ListScreen extends React.Component {
+export default class DetailScreen extends React.Component {
 
 	static navigationOptions = {
-		title: 'Results',
+		title: 'Details',
 		headerTintColor:Colors.headerTint,
 		headerStyle:{
 			backgroundColor:Colors.darkerGreen,
@@ -20,24 +20,11 @@ export default class ListScreen extends React.Component {
 	}
 	render() {
 		const { navigation } = this.props;
-		const data = navigation.getParam('data', 'NO-data');
-		const term = navigation.getParam('searchTerm', 'NO-data');
-		console.log(data);
+		const item = navigation.getParam('data', 'NO-data');
+		console.log(item);
 		return (
 	      <ScrollView style={styles.container}>
-	            <FlatList
-	            data={data}
-	            showsVerticalScrollIndicator={true}
-	            renderItem={({item}) =>
 
-				<TouchableOpacity style={styles.flatview} activeOpacity = { .5 }
-					onPress={() => {this.props.navigation.navigate('Detail',{data:item});}}>
-					 <Text style={styles.name}>{item.title}</Text>
-					 <Text style={styles.name}>{item.id}</Text>
-	            </TouchableOpacity>
-	            }
-	            keyExtractor={item => item.title+Math.floor(Math.random() * 10000) + 1 }
-	          />
 	      </ScrollView>
 	    );
 		}
