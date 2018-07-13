@@ -132,7 +132,6 @@ export default class DetailScreen extends React.Component {
 			</Text>
 			{"\n"}
 			</Text>
-			{"\n"}
 			<Text style={styles.gbHeading}>
 			Bad List:
 			{"\n"}

@@ -8,6 +8,7 @@ import AboutScreen from '../screens/AboutScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ListScreen from '../screens/ListScreen';
 import DetailScreen from '../screens/DetailScreen';
+import InfoScreen from '../screens/InfoScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -39,6 +40,7 @@ HomeStack.navigationOptions = {
 
 const AboutStack = createStackNavigator({
   About: AboutScreen,
+  Info: InfoScreen,
 
 });
 

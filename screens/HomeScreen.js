@@ -24,7 +24,6 @@ export default class HomeScreen extends React.Component {
 			}) => {
 				this.props.navigation.navigate('List',{data:rows._array,searchTerm:this.state.searchTerm});
 				// console.log(rows._array[0]);
-
 			});
 		},
 		null,
@@ -58,9 +57,9 @@ render() {
 		<View style={styles.container}>
 		<ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 		<View style={styles.welcomeContainer}>
-		<MontText style={styles.getStartedText}>
+		<Text style={styles.getStartedText}>
 		MyPulse
-		</MontText>
+		</Text>
 		<Image
 		source={
 			require('../assets/images/logoNoText.png')
@@ -102,15 +101,17 @@ render() {
 	);
 }
 
-_handleLearnMorePress = () => {
-	WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-};
+// _handleLearnMorePress = () => {
+// 	WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+// };
+//
+// _handleHelpPress = () => {
+// 	WebBrowser.openBrowserAsync(
+// 		'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
+// 	);
+// };
 
-_handleHelpPress = () => {
-	WebBrowser.openBrowserAsync(
-		'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-	);
-};
+
 }
 
 const styles = StyleSheet.create({
@@ -127,8 +128,8 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 	welcomeImage: {
-		width: 260,
-		height: 160,
+		width: 300,
+		height: 200,
 		resizeMode: 'contain',
 		marginTop: 15,
 	},
@@ -140,8 +141,9 @@ const styles = StyleSheet.create({
 		marginVertical: 7,
 	},
 	getStartedText: {
-		fontSize: 24,
+		fontSize: 25,
 		color: 'white',
+		fontWeight: 'bold',
 		textAlign: 'center',
 	},
 	submitButton: {
