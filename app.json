@@ -15,10 +15,10 @@
         },
         "android": {
             "package": "com.nathandev.pulsepassion",
-            "versionCode": 1042,
+            "versionCode": 1043,
         },
 
-        "version": "1.4.2",
+        "version": "1.4.3",
         "orientation": "portrait",
         "icon": "./assets/icons/icon.png",
         "splash": {
