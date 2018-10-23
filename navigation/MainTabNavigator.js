@@ -23,7 +23,7 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-search${focused ? '' : '-outline'}`
+          ? `ios-search${focused ? '' : ''}`
           : 'md-search'
       }
     />
@@ -49,7 +49,7 @@ AboutStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-information-circle'}
+      name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : ''}` : 'md-information-circle'}
     />
   ),
   tabBarOptions: {

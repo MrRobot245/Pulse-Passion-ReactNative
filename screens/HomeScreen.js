@@ -11,24 +11,18 @@ import {
 	Button,
 	Linking
 } from 'react-native';
-import {SQLite,FileSystem,Asset } from 'expo';
-import { MontText,MontBold } from '../components/StyledText';
+SQLite = require('react-native-sqlite-storage')
 import Colors from '../constants/Colors';
 export default class HomeScreen extends React.Component {
 
 	searchDB() {
-		const db = SQLite.openDatabase('DB2.db');
+		const db = SQLite.openDatabase({name:'DB2.db',createFromLocation: 1});
 		db.transaction(tx => {
-			tx.executeSql('SELECT * FROM DB WHERE title LIKE ? ORDER BY title', ['%'+this.state.searchTerm+'%'], (_, {
-				rows
-			}) => {
-				this.props.navigation.navigate('List',{data:rows._array,searchTerm:this.state.searchTerm});
-				// console.log(rows._array[0]);
-			});
-		},
-		null,
-		null
-	);
+			tx.executeSql('SELECT * FROM DB WHERE title LIKE "%'+this.state.searchTerm+'%" ORDER BY title',[], (tx,results) => {
+				// console.log("Query completed");
+					this.props.navigation.navigate('List',{data:results.rows.raw(),searchTerm:this.state.searchTerm})
+			  });
+		  });
 }
 
 static navigationOptions = {

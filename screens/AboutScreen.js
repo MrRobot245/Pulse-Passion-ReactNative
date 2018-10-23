@@ -38,8 +38,8 @@ export default class AboutScreen extends React.Component {
 			style={styles.aboutImage}
 			/>
 			<Text style={{paddingLeft:50}}>
-			App Version: {pkg.expo.version}{'\n'}
-			SDK Version: {pkg.expo.sdkVersion}
+			App Version: .1{'\n'}
+			SDK Version: .57
 			{"\n"}{"\n"}
 			</Text>
 			</View>
