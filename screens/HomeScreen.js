@@ -53,7 +53,9 @@ render() {
 		<Text style={styles.getStartedText}>
 		MyPulse
 		</Text>
-
+		<View style={{ flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'}}>
 			<View style={{justifyContent:'center',alignItems:'center'}}>
 		<Image
 		source={
@@ -63,8 +65,7 @@ render() {
 		/>
 		</View>
 
-		{/* <KeyboardAvoidingView behavior="padding" enabled></KeyboardAvoidingView> */}
-		<View>
+		<KeyboardAvoidingView behavior="padding" enabled style={{width:"100%"}}>
 		<TextInput
 		style={{height: 40,backgroundColor:'white',marginHorizontal:30,padding:5,borderColor: '#fff',borderWidth: 1,borderRadius:10}}
 		placeholder="Enter your search term:"
@@ -85,8 +86,8 @@ render() {
 		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
 		accessibilityLabel="Search the database"
 		/>
-		</View>
-		{/* </KeyboardAvoidingView> */}
+		</KeyboardAvoidingView>
+		
 		
 
 		
@@ -97,8 +98,12 @@ render() {
 		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
 		accessibilityLabel="Learn more about Pulse Passion!"
 		/>
+
+		</View>
+	
 		</View>
 		</View>
+		
 	);
 }
 
