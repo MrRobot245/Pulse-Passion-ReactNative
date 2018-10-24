@@ -1,8 +1,8 @@
 import React from 'react';
 import { ScrollView, StyleSheet,View,Text,Button,Linking,Platform,Image } from 'react-native';
 import Colors from '../constants/Colors';
-let pkg = require('../app.json');
-import SettingsList from 'react-native-settings-list';
+let pkg = require('../package.json');
+
 export default class AboutScreen extends React.Component {
 	static navigationOptions = {
 		title: 'About',
@@ -38,8 +38,8 @@ export default class AboutScreen extends React.Component {
 			style={styles.aboutImage}
 			/>
 			<Text style={{paddingLeft:50}}>
-			App Version: .1{'\n'}
-			SDK Version: .57
+			App Version: {pkg.appver}{'\n'}
+			SDK Version: {pkg.dependencies["react-native"]}
 			{"\n"}{"\n"}
 			</Text>
 			</View>

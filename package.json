@@ -1,6 +1,7 @@
 {
   "name": "PulsePassion",
   "version": "0.0.1",
+  "appver":"2.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -9,6 +10,7 @@
   "dependencies": {
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.3",
+    "react-native-device-info": "^0.24.3",
     "react-native-settings-list": "^1.8.0",
     "react-native-sqlite-storage": "^3.3.7",
     "react-native-vector-icons": "^6.0.2",

@@ -108,7 +108,7 @@ export default class DetailScreen extends React.Component {
 		// console.log(item);
 		return (
 			<ScrollView style={styles.container}>
-			<Text style={styles.title}>
+			<Text style={styles.title} adjustsFontSizeToFit numberOfLines={2}>
 			{item.title}
 			</Text>
 			<Text style={styles.subtitle}>

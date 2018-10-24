@@ -5,7 +5,6 @@ import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import AboutScreen from '../screens/AboutScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import ListScreen from '../screens/ListScreen';
 import DetailScreen from '../screens/DetailScreen';
 import InfoScreen from '../screens/InfoScreen';

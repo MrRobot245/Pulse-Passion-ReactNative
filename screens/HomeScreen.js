@@ -9,7 +9,8 @@ import {
 	View,
 	TextInput,
 	Button,
-	Linking
+	Linking,
+	KeyboardAvoidingView
 } from 'react-native';
 SQLite = require('react-native-sqlite-storage')
 import Colors from '../constants/Colors';
@@ -48,20 +49,22 @@ Linking.openURL("https://pulsepassion.ca");
 render() {
 
 	return (
-		<View style={styles.container}>
-		<ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-		<View style={styles.welcomeContainer}>
+		<View style={styles.container} contentContainerStyle={styles.contentContainer}>
 		<Text style={styles.getStartedText}>
 		MyPulse
 		</Text>
+
+			<View style={{justifyContent:'center',alignItems:'center'}}>
 		<Image
 		source={
 			require('../assets/images/logoNoText.png')
 		}
 		style={styles.welcomeImage}
 		/>
-
 		</View>
+
+		{/* <KeyboardAvoidingView behavior="padding" enabled></KeyboardAvoidingView> */}
+		<View>
 		<TextInput
 		style={{height: 40,backgroundColor:'white',marginHorizontal:30,padding:5,borderColor: '#fff',borderWidth: 1,borderRadius:10}}
 		placeholder="Enter your search term:"
@@ -72,6 +75,7 @@ render() {
 		onChangeText={(text) => this.setState({searchTerm: text})}
 		underlineColorAndroid={'rgba(0,0,0,0)'}
 		/>
+	
 
 
 
@@ -81,8 +85,11 @@ render() {
 		color={Platform.OS === 'ios' ? '#fff' : Colors.pulseGreen}
 		accessibilityLabel="Search the database"
 		/>
+		</View>
+		{/* </KeyboardAvoidingView> */}
+		
 
-		</ScrollView>
+		
 		<View style={{margin:10}}>
 		<Button
 		onPress={this.onPressLearn.bind(this)}
@@ -115,6 +122,10 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		paddingTop: 30,
+
+		alignItems: 'center',
+		alignContent:'center',
+		justifyContent:'center',
 	},
 	welcomeContainer: {
 		alignItems: 'center',
@@ -126,6 +137,9 @@ const styles = StyleSheet.create({
 		height: 200,
 		resizeMode: 'contain',
 		marginTop: 15,
+		alignItems: 'center',
+		alignContent:'center',
+		justifyContent:'center'
 	},
 	getStartedContainer: {
 		alignItems: 'center',
@@ -135,9 +149,13 @@ const styles = StyleSheet.create({
 		marginVertical: 7,
 	},
 	getStartedText: {
+		paddingTop:40,
 		fontSize: 25,
 		color: 'white',
 		fontWeight: 'bold',
+		alignItems: 'center',
+		alignContent:'center',
+		justifyContent:'center',
 		textAlign: 'center',
 	},
 	submitButton: {
