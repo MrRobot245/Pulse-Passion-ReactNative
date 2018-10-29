@@ -20,8 +20,12 @@ export default class DetailScreen extends React.Component {
 	}
 
 	render() {
+	
 		const { navigation } = this.props;
 		const item = navigation.getParam('data', 'NO-data');
+
+		console.log(item.fRate);
+		console.log(item.iRate);
 
 		var gListArr=[];
 		var bListArr=[];
@@ -76,7 +80,7 @@ export default class DetailScreen extends React.Component {
 				/>
 			)
 		}
-		else if(item.fRate=="Limit")
+		else if(item.fRate=="Sometimes")
 		{
 			imgRating.push(
 				<Image
