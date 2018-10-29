@@ -24,8 +24,8 @@ export default class DetailScreen extends React.Component {
 		const { navigation } = this.props;
 		const item = navigation.getParam('data', 'NO-data');
 
-		console.log(item.fRate);
-		console.log(item.iRate);
+		// console.log(item.fRate);
+		// console.log(item.iRate);
 
 		var gListArr=[];
 		var bListArr=[];
