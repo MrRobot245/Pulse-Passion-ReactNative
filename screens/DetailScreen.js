@@ -1,12 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet,ActivityIndicator,View,Text,Button, RefreshControl,Linking,TouchableOpacity,Platform,AlertIOS,Alert,FlatList,Image } from 'react-native';
 import Colors from '../constants/Colors';
+import Constants from 'expo-constants'
 export default class DetailScreen extends React.Component {
 
 	static navigationOptions = {
 		title: 'Details',
 		headerTintColor:Colors.headerTint,
 		headerStyle:{
+			marginTop: Constants.statusBarHeight-20,
 			backgroundColor:Colors.darkerGreen,
 		},
 	};

@@ -1,14 +1,21 @@
 import React from 'react';
 import { ScrollView, StyleSheet,ActivityIndicator,View,Text,Button, RefreshControl,Linking,TouchableOpacity,Platform,AlertIOS,Alert,FlatList } from 'react-native';
 import Colors from '../constants/Colors';
+import Constants from 'expo-constants'
 export default class ListScreen extends React.Component {
 
 	static navigationOptions = {
 		title: 'Results',
+		// headerStyle: {  },
 		headerTintColor:Colors.headerTint,
-		headerStyle:{
+		headerStyle: {
+			marginTop: Constants.statusBarHeight-20,
 			backgroundColor:Colors.darkerGreen,
 		},
+		// headerStyle:{
+		// 	backgroundColor:Colors.darkerGreen,
+		// 	marginTop: 64
+		// },
 	};
 	constructor(props){
 		super(props);
@@ -22,7 +29,6 @@ export default class ListScreen extends React.Component {
 		const { navigation } = this.props;
 		const data = navigation.getParam('data', 'NO-data');
 		const term = navigation.getParam('searchTerm', 'NO-data');
-		console.log(data);
 		return (
 	      <ScrollView style={styles.container}>
 	            <FlatList

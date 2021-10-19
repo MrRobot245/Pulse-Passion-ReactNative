@@ -23,7 +23,7 @@ export default class InfoScreen extends React.Component {
 				{"\n"}
 				</Text>
 				<Text>
-				Risk factors that you can not change are:  {"\n"}
+				Risk factors that you can not change are:{"\n"}
 				• Having a family history of cardiovascular
 				disease, your ethnicity and age.{"\n"}{"\n"}{"\n"}
 				Risk factors that you can change are:{"\n"}{"\n"}{"\n"}

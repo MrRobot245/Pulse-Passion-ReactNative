@@ -11,14 +11,32 @@ import {
 	Button,
 	Linking
 } from 'react-native';
-import {SQLite,FileSystem,Asset } from 'expo';
+import { Asset } from 'expo-asset';
+import * as FileSystem from 'expo-file-system';
+import * as SQLite from 'expo-sqlite';
 import { MontText,MontBold } from '../components/StyledText';
 import Colors from '../constants/Colors';
+
+export const openDatabase = async () => {
+	if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite")).exists) {
+	  await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + "SQLite");
+	}
+	const [{ uri }] = await Asset.loadAsync(require("../assets/db/DB2.db"));
+	await FileSystem.downloadAsync(uri, FileSystem.documentDirectory + "SQLite/DB2.db");
+	// return SQLite.openDatabase("//store.db");
+	// const db 
+  };
+  openDatabase();
+  const db = SQLite.openDatabase('DB2.db');
+
 export default class HomeScreen extends React.Component {
 
 	searchDB() {
-		const db = SQLite.openDatabase('DB2.db');
-		db.transaction(tx => {
+		
+		// console.log(this.state.searchTerm)
+		// console.log(db)
+		// console.log(this.state.searchTerm)
+			db.transaction(tx => {
 			tx.executeSql('SELECT * FROM DB WHERE title LIKE ? ORDER BY title', ['%'+this.state.searchTerm+'%'], (_, {
 				rows
 			}) => {
@@ -29,6 +47,18 @@ export default class HomeScreen extends React.Component {
 		null,
 		null
 	);
+		// db.transaction((tx) => {
+			
+		// 	tx.executeSql("SELECT * FROM DB WHERE title LIKE = ?", [
+		// 		'%'+this.state.searchTerm+'%',
+		// 	], (tx, results) => {
+		// 		console.log(results);
+		// 		this.props.navigation.navigate('List',{data:results,searchTerm:this.state.searchTerm});
+		// 	})
+			
+		// 	});
+
+
 }
 
 static navigationOptions = {
@@ -89,7 +119,7 @@ render() {
 		/>
 
 		</ScrollView>
-		<View style={{margin:10}}>
+		<View style={{margin:25}}>
 		<Button
 		onPress={this.onPressLearn.bind(this)}
 		title="Learn More"
@@ -145,6 +175,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		textAlign: 'center',
+		marginTop:25
 	},
 	submitButton: {
 		backgroundColor: '#000',

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon,FileSystem} from 'expo';
+import {Asset, Font} from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-
+import AppLoading from 'expo-app-loading';
+import * as FileSystem from 'expo-file-system';
+import { LogBox } from 'react-native';
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -35,12 +37,11 @@ export default class App extends React.Component {
 		require('./assets/images/nnYellow.png'),
 		require('./assets/images/nnRed.png'),
       ]),
-	  FileSystem.downloadAsync(
-		  Asset.fromModule(require('./assets/db/DB2.db')).uri,
-		  `${FileSystem.documentDirectory}SQLite/DB2.db`
-	  ),
+	  // FileSystem.downloadAsync(
+		//   Asset.fromModule(require('./assets/db/DB2.db')).uri,
+		//   `${FileSystem.documentDirectory}SQLite/DB2.db`
+	  // ),
       Font.loadAsync({
-        ...Icon.Ionicons.font,
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
 		'mont': require('./assets/fonts/Montserrat-Regular.ttf'),
 		'montBold': require('./assets/fonts/Montserrat-Bold.ttf'),
@@ -63,3 +64,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+console.disableYellowBox = true;
