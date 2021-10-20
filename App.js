@@ -30,6 +30,10 @@ export default class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
+
+    const images = [require('./assets/images/nnGreen.png'),require('./assets/images/nnYellow.png'),require('./assets/images/nnRed.png')];
+  		
+		
   //   return Promise.all([
   //   //   Asset.loadAsync([
   //   //     require('./assets/images/logoNoText.png'),
