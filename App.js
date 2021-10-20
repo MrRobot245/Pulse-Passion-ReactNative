@@ -1,10 +1,21 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import {Asset, Font} from 'expo';
+import {Asset} from 'expo-asset';
 import AppNavigator from './navigation/AppNavigator';
 import AppLoading from 'expo-app-loading';
-import * as FileSystem from 'expo-file-system';
+// import * as FileSystem from 'expo-file-system';
 import { LogBox } from 'react-native';
+
+function cacheImages(images) {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image).downloadAsync();
+    }
+  });
+}
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -29,10 +40,11 @@ export default class App extends React.Component {
     }
   }
 
+
   _loadResourcesAsync = async () => {
 
-    const images = [require('./assets/images/nnGreen.png'),require('./assets/images/nnYellow.png'),require('./assets/images/nnRed.png')];
-  		
+    const imageAssets =cacheImages( [require('./assets/images/nnGreen.png'),require('./assets/images/nnYellow.png'),require('./assets/images/nnRed.png')]);
+    await Promise.all([...imageAssets]);
 		
   //   return Promise.all([
   //   //   Asset.loadAsync([
