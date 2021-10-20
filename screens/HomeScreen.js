@@ -18,28 +18,71 @@ import * as SQLite from 'expo-sqlite';
 import { MontText,MontBold } from '../components/StyledText';
 import Colors from '../constants/Colors';
 
-export const openDatabase = async () => {
-	if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite")).exists) {
-	  await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + "SQLite");
-	}
-	const [{ uri }] = await Asset.loadAsync(require("../assets/db/DB2.db"));
-	await FileSystem.downloadAsync(uri, FileSystem.documentDirectory + "SQLite/DB2.db");
-	// return SQLite.openDatabase("//store.db");
-	// const db 
-  };
-  openDatabase();
-  const db = SQLite.openDatabase({name:'DB2.db',createFromLocation: 1});
+// export const openDatabase = async () => {
+// 	if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite")).exists) {
+// 	  await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + "SQLite");
+// 	}
+// 	const [{ uri }] = await Asset.loadAsync(require("../assets/db/DB2.db"));
+// 	await FileSystem.downloadAsync(uri, FileSystem.documentDirectory + "SQLite/DB2.db");
+// 	// return SQLite.openDatabase("//store.db");
+// 	// const db 
+//   };
+//   openDatabase();
+//   const db = SQLite.openDatabase({name:'DB2.db',createFromLocation: 1});
+  const DB_NAME = 'DB2.db';
+  const SQLITE_DIRECTORY = `${FileSystem.documentDirectory}SQLite`;
+  const LOCAL_SQLITE_DB = `${SQLITE_DIRECTORY}/${DB_NAME}`;
+  const SOURCE_DB_ASSET = require(`../assets/db/${DB_NAME}`);
+
+
 
   export default class HomeScreen extends React.Component {
 
-	searchDB() {
+	async initialise() {
+        try {                 
+            
+            const dbInfo = await FileSystem.getInfoAsync(LOCAL_SQLITE_DB, {
+                intermediate: true    
+            });
+            await this.makeSQLiteDirectoryIfNotExist();
+            console.log(dbInfo);
+            if (!dbInfo['exists']) {
+                if (DEBUG) console.log(`Creating DB at path: ${LOCAL_SQLITE_DB}`);
+                await FileSystem.downloadAsync(Asset.fromModule(SOURCE_DB_ASSET).uri, LOCAL_SQLITE_DB).catch(error => {
+                    console.error(`Error downloading the database: ${e}`);
+                });
+                console.log('Reloading app for database');
+                Updates.reload();
+            } else {                
+                console.log(`Using DB found at: ${LOCAL_SQLITE_DB}`);
+            }            
 
+          } catch (e) {            
+            console.log(e);
+          } 
+    }
+	async makeSQLiteDirectoryIfNotExist() {
+        const { exists } = await FileSystem.getInfoAsync(SQLITE_DIRECTORY);
+        if (!exists) {
+            await FileSystem.makeDirectoryAsync(SQLITE_DIRECTORY);
+            console.log("Created SQLite directory");
+        } else {
+            console.log("SQLite directory exists");
+        }
+    }    
+
+
+	searchDB() {
+		// console.log("Button Pressed");
+		// // this.props.navigation.navigate('List',{searchTerm:this.state.searchTerm})
 		db.transaction(tx => {
 			tx.executeSql('SELECT * FROM DB WHERE title LIKE "%'+this.state.searchTerm+'%" ORDER BY title',[], (tx,results) => {
 				// console.log("Query completed");
-					this.props.navigation.navigate('List',{data:results.rows.raw(),searchTerm:this.state.searchTerm})
+				// console.log(results)
+					this.props.navigation.navigate('List',{data:results.rows._array,searchTerm:this.state.searchTerm})
 			  });
 		  });
+
 }
 static navigationOptions = {
 	header: null,
@@ -49,6 +92,7 @@ constructor(props) {
 	this.state = {
 		searchTerm: ""
 	};
+	db = SQLite.openDatabase(DB_NAME);
 }
 componentDidMount() {
 

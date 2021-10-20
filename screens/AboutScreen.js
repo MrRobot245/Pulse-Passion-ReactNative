@@ -3,12 +3,14 @@ import { ScrollView, StyleSheet,View,Text,Button,Linking,Platform,Image } from '
 import Colors from '../constants/Colors';
 let pkg = require('../app.json');
 import SettingsList from 'react-native-settings-list';
+import Constants from 'expo-constants'
 export default class AboutScreen extends React.Component {
 	static navigationOptions = {
 		title: 'About',
 		headerTintColor:Colors.headerTint,
 		headerStyle:{
 			backgroundColor:Colors.darkerGreen,
+			marginTop: Constants.statusBarHeight-20,
 		},
 	};
 	onPressDiet(){
@@ -39,7 +41,7 @@ export default class AboutScreen extends React.Component {
 			/>
 			<Text style={{paddingLeft:50}}>
 			App Version: {pkg.expo.version}{'\n'}
-			SDK Version: {pkg.expo.sdkVersion}
+			SDK Version: 42
 			{"\n"}{"\n"}
 			</Text>
 			</View>

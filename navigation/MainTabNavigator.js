@@ -15,75 +15,58 @@ import InfoScreen from '../screens/InfoScreen';
 //   List: { screen: ListScreen},
 //   Detail:{ screen: DetailScreen},
 // });
-
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   List: ListScreen,
-  Detail:DetailScreen,
-},
-{
-  cardStyle: {
-    opacity: 1,
-    backgroundColor: '#282A2D',
-  },
-  transitionConfig: () => ({
-    containerStyle: {
-      backgroundColor: "#000",
-    }
-  })
+  Detail: DetailScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarVisible:false,
   tabBarLabel: 'Search',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
-    focused={focused}
-    name={
-      Platform.OS === 'ios'
-      ? 'ios-search'
-      : 'md-search'
-    }
-    />
-    ),
- 
-    tabBarOptions: {
-      style: {
-        backgroundColor: Colors.darkerGreen,
-      },
-      labelStyle:{
-        color:Colors.label,
-      }
-    },
-  };
-  
-  
-  const SettingsStack = createStackNavigator({
-    Settings: SettingsScreen,
-  });
-  
-  SettingsStack.navigationOptions = {
-    tabBarLabel: 'Settings',
-    tabBarVisible:true,
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
-      />
-      ),
-      tabBarOptions: {
-        style: {
-          backgroundColor: Colors.darkerGreen,
-        },
-        labelStyle:{
-          color:Colors.label,
-        }
-      },
-    };
-    
-    export default createBottomTabNavigator({
-      HomeStack,
-      SettingsStack
+      name={
+        Platform.OS === 'ios'
+          ? `ios-search${focused ? '' : ''}`
+          : 'md-search'
+      }
+    />
+  ),
+  tabBarOptions: {
+	  style: {
+		  backgroundColor: Colors.darkerGreen,
+	  },
+	  labelStyle:{
+		  color:Colors.label,
+	  }
+  },
+};
 
-    });
-    
+const AboutStack = createStackNavigator({
+  About: AboutScreen,
+  Info: InfoScreen,
+
+});
+
+AboutStack.navigationOptions = {
+  tabBarLabel: 'About',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : ''}` : 'md-information-circle'}
+    />
+  ),
+  tabBarOptions: {
+	style: {
+		backgroundColor: Colors.darkerGreen,
+	},
+	labelStyle:{
+		color:Colors.label,
+	}
+  },
+};
+export default createBottomTabNavigator({
+  HomeStack,
+  AboutStack,
+});

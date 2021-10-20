@@ -3,12 +3,14 @@ import { ScrollView, StyleSheet,View,Text,Button,Linking,Platform } from 'react-
 import Colors from '../constants/Colors';
 let pkg = require('../app.json');
 import SettingsList from 'react-native-settings-list';
+import Constants from 'expo-constants'
 export default class InfoScreen extends React.Component {
 	static navigationOptions = {
 		title: 'Information',
 		headerTintColor:Colors.headerTint,
 		headerStyle:{
 			backgroundColor:Colors.darkerGreen,
+			marginTop: Constants.statusBarHeight-20,
 		},
 	};
 	render() {

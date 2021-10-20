@@ -12,10 +12,6 @@ export default class ListScreen extends React.Component {
 			marginTop: Constants.statusBarHeight-20,
 			backgroundColor:Colors.darkerGreen,
 		},
-		// headerStyle:{
-		// 	backgroundColor:Colors.darkerGreen,
-		// 	marginTop: 64
-		// },
 	};
 	constructor(props){
 		super(props);
@@ -29,8 +25,9 @@ export default class ListScreen extends React.Component {
 		const { navigation } = this.props;
 		const data = navigation.getParam('data', 'NO-data');
 		const term = navigation.getParam('searchTerm', 'NO-data');
+		// console.log(data)
 		return (
-	      <ScrollView style={styles.container}>
+	    //   <ScrollView style={styles.container}>
 	            <FlatList
 	            data={data}
 	            showsVerticalScrollIndicator={true}
@@ -43,7 +40,7 @@ export default class ListScreen extends React.Component {
 	            }
 	            keyExtractor={(item,index) => index.toString() }
 	          />
-	      </ScrollView>
+	    //   </ScrollView>
 	    );
 		}
 }

@@ -30,23 +30,23 @@ export default class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
-    return Promise.all([
-      Asset.loadAsync([
-        require('./assets/images/logoNoText.png'),
-		require('./assets/images/nnGreen.png'),
-		require('./assets/images/nnYellow.png'),
-		require('./assets/images/nnRed.png'),
-      ]),
-	  // FileSystem.downloadAsync(
-		//   Asset.fromModule(require('./assets/db/DB2.db')).uri,
-		//   `${FileSystem.documentDirectory}SQLite/DB2.db`
-	  // ),
-      Font.loadAsync({
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-		'mont': require('./assets/fonts/Montserrat-Regular.ttf'),
-		'montBold': require('./assets/fonts/Montserrat-Bold.ttf'),
-      }),
-    ]);
+  //   return Promise.all([
+  //   //   Asset.loadAsync([
+  //   //     require('./assets/images/logoNoText.png'),
+	// 	// require('./assets/images/nnGreen.png'),
+	// 	// require('./assets/images/nnYellow.png'),
+	// 	// require('./assets/images/nnRed.png'),
+  //   //   ]),
+	//   // FileSystem.downloadAsync(
+	// 	//   Asset.fromModule(require('./assets/db/DB2.db')).uri,
+	// 	//   `${FileSystem.documentDirectory}SQLite/DB2.db`
+	//   // ),
+  //   //   Font.loadAsync({
+  //   //     'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+	// 	// 'mont': require('./assets/fonts/Montserrat-Regular.ttf'),
+	// 	// 'montBold': require('./assets/fonts/Montserrat-Bold.ttf'),
+  //   //   }),
+  //   ]);
   };
 
   _handleLoadingError = error => {
@@ -64,4 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-console.disableYellowBox = true;
+LogBox.ignoreLogs([
+  "It appears that you are using old version of react-navigation library",
+]);
